@@ -1,0 +1,43 @@
+.intro{
+  margin-left: 30%;
+  margin-bottom: -10%;
+  margin-top: 13%;
+}
+.intro h2{
+  color: #4c4c4c;
+  font-size: 65px;
+  font-weight: normal;
+}
+.intro h3{
+  font-size: 19px;
+  color: #7421ff;
+  font-weight: normal;
+}
+.card{
+  padding: 20px;
+  width: 60%;
+  margin: 12% 15% 0 10%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.subBtn button{
+  width: 150px;
+  padding: 5px 0;
+  font-size: 20px;
+  color: black;
+}
+.myButtons input{
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 3px;
+  margin-right: 5px;
+  transition: all .5s;
+}
+.myButtons input:hover{
+  background-color: #e0e0e069;
+}

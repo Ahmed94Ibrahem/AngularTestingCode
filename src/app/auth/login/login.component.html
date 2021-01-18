@@ -1,0 +1,41 @@
+<div class="intro">
+  <h2 class="form-signin-heading">VOOOM</h2>
+  <h3> Login To Vendor Dashboard</h3>
+</div>
+
+<div class="card">
+
+    <div class="loginForm d-flex justify-content-center align-items-center">
+
+      <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
+
+          <div *ngIf="errors" class="alert alert-danger text-center">
+            <h4>{{errors.status}} - {{errors.message}}</h4>
+          </div>
+
+        <!-- Email Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>Email Address</mat-label>
+            <input matInput placeholder="Email Address" type="email" name="email" ngModel autocomplete="off" required>
+          </mat-form-field>
+
+
+          <!-- Password Field -->
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" name="password" ngModel required>
+          </mat-form-field>
+
+          <div class="text-right subBtn">
+            <button mat-button type="submit" [disabled]="!f.valid">Login</button>
+          </div>
+
+          <div class="myButtons">
+              <input type="button" mat-button value="Forget Password ?!" (click)="forget()">
+              <input type="button" mat-button value="Activate Your Account ?!" (click)="activate()">
+          </div>
+      </form>
+
+  </div>
+
+</div>

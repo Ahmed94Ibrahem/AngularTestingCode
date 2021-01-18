@@ -1,0 +1,18 @@
+<div class="intro">
+    <h2 class="form-signin-heading">VOOOM</h2>
+    <h3>Verify Your Vendor Account</h3>
+  </div>
+<div class="card">
+    <form #verify="ngForm" (ngSubmit)="verifyVendor(verify.value)">
+        <div *ngIf="errors" class="alert alert-danger text-center">
+            <h4>{{errors.status}} - {{errors.message}}</h4>
+          </div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Verification Code</mat-label>
+            <input matInput placeholder="Verification Code" type="text" name="verificationCode" ngModel autocomplete="off" required>
+        </mat-form-field>
+        <div class="text-right subBtn">
+            <button mat-button type="submit" [disabled]="!verify.valid">Send</button>
+        </div>
+    </form>
+</div>

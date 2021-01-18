@@ -1,0 +1,58 @@
+
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <h2 class="text-center"><b>VOOOM</b>Panel</h2>
+    </div>
+    <ul class="nav responsive-nav">
+
+        <mat-accordion>  
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="fa fa-shopping-cart"></i>  Orders   
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/orders/create-order">
+                        <p>Create Order</p>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/orders/list-orders">
+                        <p>View Orders</p>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/orders/request-vooomer">
+                        <p>Request Vooomer</p>
+                    </a>
+                </li>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion>  
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="fa fa-shopping-cart"></i>  Customers   
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/customers/create-customer">
+                        <p>Create Customer</p>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/customers/view-customers">
+                        <p>View Customers</p>
+                    </a>
+                </li>
+            </mat-expansion-panel>
+        </mat-accordion>
+        
+    </ul>
+</div>

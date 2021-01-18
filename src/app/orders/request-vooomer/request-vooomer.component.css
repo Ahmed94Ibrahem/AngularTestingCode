@@ -1,0 +1,16 @@
+.card{
+    width: 80%;
+    padding: 20px;
+    margin: 50px auto 0 auto;
+}
+mat-form-field{
+    width: 100%;
+}
+h4{
+    background-color: #7422ff;
+    width: 200px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+}

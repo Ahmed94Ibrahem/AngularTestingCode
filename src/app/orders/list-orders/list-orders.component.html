@@ -1,0 +1,310 @@
+
+<mat-tab-group>
+
+    <!-- Starting Incoming Orders Tab -->
+    <mat-tab label="Incoming Orders">
+        <div class="mat-elevation-z8" > 
+            
+            <!-- Filtering Input -->
+                    <!-- <mat-form-field>
+                        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+                    </mat-form-field> -->
+            <!-- End of Filtering Input -->
+            
+            <table mat-table [dataSource]="comingDataSource" matSort class="table table-striped table-bordered" >
+        
+                <!-- orderId Column -->
+                <ng-container matColumnDef="ticketId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ticketId}} </td>
+                </ng-container>
+            
+                <!-- totalPrice Column -->
+                <ng-container matColumnDef="createdAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>createdAt</th>
+                <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+                </ng-container>
+        
+                <!-- status Column -->
+                <ng-container matColumnDef="from">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> from</th>
+                    <td mat-cell *matCellDef="let element"> {{element.from}} </td>
+                </ng-container>
+
+                <!-- status Column -->
+                <ng-container matColumnDef="driverName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> driverName</th>
+                    <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
+                </ng-container>
+                
+        
+                <!-- status Column -->
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> phone</th>
+                    <td mat-cell *matCellDef="let element"> {{element.user.phone}} </td>
+                </ng-container>
+
+                <!-- status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> status</th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+                
+
+                <!-- customer Column -->
+                <!-- <ng-container matColumnDef="customer">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ul>
+                            <li>{{element.customer.name}}</li>
+                            <li>{{element.customer.phone}}</li>
+                            <li>{{element.location.address}}</li>
+                        </ul>
+                    </td>
+                </ng-container> -->
+        
+                <!-- products Column -->
+                <!-- <ng-container matColumnDef="products">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Products Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ul *ngFor="let product of element.products">
+                            <li>{{product.title.en}}</li>
+                            <li>{{product.price}}</li>
+                            <li>{{product.quantity}}</li>
+                        </ul>
+                    </td>
+                </ng-container> -->
+        
+                <!-- Actions -->
+                <!-- <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="icons">                    
+                            <a (click)="getChatDate(element._id)" id="showChat">
+                                <i class="fa fa-comment fa-lg"></i>
+                            </a>
+                            
+                            <a (click)="assignVooomer(element._id)"><i class="fa fa-motorcycle fa-lg"></i></a>
+                            <a [routerLink]="['/orders/view', element._id]"><i class="fa fa-list fa-lg"></i></a>
+                            <a [ngClass]="{
+                                'red': element.status === 'pending' || element.status === 'inProgress',
+                                'disabled': element.status === 'completed' || element.status === 'cancelled'
+                            }"
+                               (click)='cancelOrder(element._id)'>
+                                <i class="fa fa-times-circle fa-lg"></i>
+                            </a>
+                        </div>
+                    </td>
+                </ng-container> -->
+                
+            
+                <tr mat-header-row *matHeaderRowDef="displayedComingColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedComingColumns;"></tr>
+            </table>
+            <div class="text-right">
+                <ngb-pagination
+                [(page)]="page"
+                [(collectionSize)]="collectionSize"
+                [(maxSize)]="maxSize"
+                (pageChange)="onComingPageChange($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
+    
+    </mat-tab>
+    <!-- Ending Incoming Orders Tab -->
+
+    <!-- Starting Normal Orders Tab -->
+    <mat-tab label="Normal Orders"> 
+
+        <div class="mat-elevation-z8" > 
+            
+            <!-- Filtering Input -->
+                    <!-- <mat-form-field>
+                        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+                    </mat-form-field> -->
+            <!-- End of Filtering Input -->
+            
+            <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-bordered" >
+        
+                <!-- orderId Column -->
+                <ng-container matColumnDef="ticketId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ticketId}} </td>
+                </ng-container>
+            
+                <!-- totalPrice Column -->
+                <ng-container matColumnDef="totalPrice">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+                </ng-container>
+        
+                <!-- status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+        
+                <!-- customer Column -->
+                <ng-container matColumnDef="customer">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ul>
+                            <li>{{element.customer.name}}</li>
+                            <li>{{element.customer.phone}}</li>
+                            <li>{{element.location.address}}</li>
+                        </ul>
+                    </td>
+                </ng-container>
+        
+                <!-- products Column -->
+                <ng-container matColumnDef="products">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Products Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ul *ngFor="let product of element.products">
+                            <li>{{product.title.en}}</li>
+                            <li>{{product.price}}</li>
+                            <li>{{product.quantity}}</li>
+                        </ul>
+                    </td>
+                </ng-container>
+        
+                <!-- Actions -->
+                <!-- <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="icons">                    
+                            <a (click)="getChatDate(element._id)" id="showChat">
+                                <i class="fa fa-comment fa-lg"></i>
+                            </a>
+                            
+                            <a (click)="assignVooomer(element._id)"><i class="fa fa-motorcycle fa-lg"></i></a>
+                            <a [routerLink]="['/orders/view', element._id]"><i class="fa fa-list fa-lg"></i></a>
+                            <a [ngClass]="{
+                                'red': element.status === 'pending' || element.status === 'inProgress',
+                                'disabled': element.status === 'completed' || element.status === 'cancelled'
+                            }"
+                               (click)='cancelOrder(element._id)'>
+                                <i class="fa fa-times-circle fa-lg"></i>
+                            </a>
+                        </div>
+                    </td>
+                </ng-container> -->
+                
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div class="text-right">
+                <ngb-pagination
+                [(page)]="page"
+                [(collectionSize)]="collectionSize"
+                [(maxSize)]="maxSize"
+                (pageChange)="onPageChange($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
+
+    </mat-tab>
+    <!-- Ending Normal Orders Tab -->
+
+    <!-- Starting Custom Orders Tab -->
+    <mat-tab label="Custom Orders">
+        <div class="mat-elevation-z8" > 
+            
+            <!-- Filtering Input -->
+                    <!-- <mat-form-field>
+                        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+                    </mat-form-field> -->
+            <!-- End of Filtering Input -->
+            
+            <table mat-table [dataSource]="customDataSource" matSort class="table table-striped table-bordered" >
+        
+                <!-- orderId Column -->
+                <ng-container matColumnDef="ticketId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ticketId}} </td>
+                </ng-container>
+            
+                <!-- totalPrice Column -->
+                <ng-container matColumnDef="totalPrice">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.totalPrice}} </td>
+                </ng-container>
+        
+                <!-- status Column -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+        
+                <!-- customer Column -->
+                <!-- <ng-container matColumnDef="customer">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ul>
+                            <li>{{element.customer.name}}</li>
+                            <li>{{element.customer.phone}}</li>
+                            <li>{{element.location.address}}</li>
+                        </ul>
+                    </td>
+                </ng-container> -->
+        
+                <!-- products Column -->
+                <ng-container matColumnDef="createdAt">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> createdAt </th>
+                    <td mat-cell *matCellDef="let element">
+                        <!-- <ul *ngFor="let product of element.products">
+                            <li>{{product.title.en}}</li>
+                            <li>{{product.price}}</li>
+                            <li>{{product.quantity}}</li>
+                        </ul> -->
+                        {{element.createdAt | date: 'short'}}
+                    </td>
+                </ng-container>
+        
+                <!-- Actions -->
+                <!-- <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="icons">                    
+                            <a (click)="getChatDate(element._id)" id="showChat">
+                                <i class="fa fa-comment fa-lg"></i>
+                            </a>
+                            
+                            <a (click)="assignVooomer(element._id)"><i class="fa fa-motorcycle fa-lg"></i></a>
+                            <a [routerLink]="['/orders/view', element._id]"><i class="fa fa-list fa-lg"></i></a>
+                            <a [ngClass]="{
+                                'red': element.status === 'pending' || element.status === 'inProgress',
+                                'disabled': element.status === 'completed' || element.status === 'cancelled'
+                            }"
+                               (click)='cancelOrder(element._id)'>
+                                <i class="fa fa-times-circle fa-lg"></i>
+                            </a>
+                        </div>
+                    </td>
+                </ng-container> -->
+                
+            
+                <tr mat-header-row *matHeaderRowDef="displayedCustomColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedCustomColumns;"></tr>
+            </table>
+            <div class="text-right">
+                <ngb-pagination
+                [(page)]="page"
+                [(collectionSize)]="collectionSize"
+                [(maxSize)]="maxSize"
+                (pageChange)="onCustomPageChange($event)"
+                >
+                </ngb-pagination>
+            </div>
+        </div>
+    </mat-tab>
+    <!-- Ending Custom Orders Tab -->
+    
+  </mat-tab-group>
+
+
